@@ -7,23 +7,25 @@ use IEEE.std_logic_1164.all;
 
 entity RSA_DEVICE is
 	port(
-		INPUT_MESSAGE:			in	std_logic_vector(7 downto 0),
-		SEND_MESSAGE_FLAG0:	in	std_logic,
+		INPUT_MESSAGE:			in	std_logic_vector(7 downto 0);
+		SEND_MESSAGE_FLAG0:		in	std_logic;
 		OUTPUT_MESSAGE:			out	std_logic_vector(7 downto 0));
-end entity RSA_DEVICE;
+end RSA_DEVICE;
 
 architecture RSA_DEVICE_ARCH of RSA_DEVICE is
 	component RSA_CODER is 
 		port(
-			MESS:in std_logic_vector(7 downto 0),
-			PUBLIC_KEY:in std_logic_vector(15 downto 0),
-			CODED_MESS:out std_logic_vector(7 downto 0));
+			MESS:in std_logic_vector(7 downto 0);
+			PUBLIC_KEY:in std_logic_vector(15 downto 0);
+			CODED_MESS:out std_logic_vector(7 downto 0)
+			);
 	end component;
 	component RSA_DECODER is
 		port(
-			MESS:in std_logic_vector(7 downto 0),
-			PRIVATE_KEY:in std_logic_vector(15 downto 0),
-			DECODED_MESS:out std_logic_vector(7 downto 0));
+			MESS:in std_logic_vector(7 downto 0);
+			PRIVATE_KEY:in std_logic_vector(15 downto 0);
+			DECODED_MESS:out std_logic_vector(7 downto 0)
+			);
 	end component;	
 	
 	constant PUBLIC_KEY  : std_logic_vector(15 downto 0) := "00000101";
@@ -48,4 +50,4 @@ begin
 				CODED_MESS => OUTPUT_MESSAGE);
 		end if
 	end process;
-end architecture RSA_DEVICE_ARCH;
+end RSA_DEVICE_ARCH;
