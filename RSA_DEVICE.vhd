@@ -15,6 +15,7 @@ end RSA_DEVICE;
 architecture RSA_DEVICE_ARCH of RSA_DEVICE is
 	component RSA_CODER is 
 		port(
+			EN: in std_logic;
 			MESS:in std_logic_vector(7 downto 0);
 			PUBLIC_KEY:in std_logic_vector(15 downto 0);
 			CODED_MESS:out std_logic_vector(7 downto 0)
@@ -39,10 +40,9 @@ begin
 		PRIVATE_KEY => PRIVATE_KEY,
 		DECODED_MESS => MESSEGE);
 
-	if (SEND_MESSAGE_FLAG == '1') then
-		CODER: RSA_CODER port map(
-			MESS => MESSEGE,
-			PUBLIC_KEY => PUBLIC_KEY,
-			CODED_MESS => OUTPUT_MESSAGE);
-	end if;
+	CODER: RSA_CODER port map(
+		EN => SEND_MESSAGE_FLAG,
+		MESS => MESSEGE,
+		PUBLIC_KEY => PUBLIC_KEY,
+		CODED_MESS => OUTPUT_MESSAGE);
 end RSA_DEVICE_ARCH;
