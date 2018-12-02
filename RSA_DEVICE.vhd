@@ -29,8 +29,8 @@ architecture RSA_DEVICE_ARCH of RSA_DEVICE is
 			);
 	end component;	
 	
-	constant PUBLIC_KEY  : std_logic_vector(15 downto 0) := "00000000"&"00000101";
-	constant PRIVATE_KEY : std_logic_vector(15 downto 0) := "00000000"&"00010001";
+	signal PUBLIC_KEY  : std_logic_vector(15 downto 0) ;
+	signal PRIVATE_KEY : std_logic_vector(15 downto 0) ;
 	
 	signal MESSEGE : std_logic_vector(7 downto 0);
 begin

@@ -1,9 +1,7 @@
-------------------------------------------
---	RSA decoder
-------------------------------------------
-
 library IEEE;
-use IEEE.std_logic_1164.all;
+use IEEE.std_logic_1164.all;   
+use IEEE.std_logic_unsigned.all;
+use IEEE.std_logic_arith.all;
 
 entity RSA_DECODER is
 	port(
@@ -22,7 +20,8 @@ begin
 	
 	process is 
 	begin
-		DECODED_MESSAGE <= (MESSAGE**d)%n;
+		DECODED_MESSAGE <= conv_std_logic_vector((conv_integer(MESSAGE)**(conv_integer(d) rem (conv_integer(n)))), 8);
+		wait;
 	end process;	
 	
 end RSA_DECODER_ARCH;
