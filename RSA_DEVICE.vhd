@@ -28,26 +28,21 @@ architecture RSA_DEVICE_ARCH of RSA_DEVICE is
 			);
 	end component;	
 	
-	constant PUBLIC_KEY  : std_logic_vector(15 downto 0) := "00000101"; -- возможно изза размерности переменных
+	constant PUBLIC_KEY  : std_logic_vector(15 downto 0) := "00000101";
 	constant PRIVATE_KEY : std_logic_vector(15 downto 0) := "00010001";
 	
 	signal MESSEGE : std_logic_vector(7 downto 0);
 begin
-	process (INPUT_MESSAGE) is 
-	begin
-		DECODER: RSA_DECODER port map(
-			MESS => INPUT_MESSAGE,
-			PRIVATE_KEY => PRIVATE_KEY, -- оно считает что половина данного порта просто пустая
-			DECODED_MESS => MESSEGE);
-	end process;
-	
-	process (SEND_MESSAGE_FLAG) is
-	begin
-		if (SEND_MESSAGE_FLAG == '1') then
-			CODER: RSA_CODER port map(
-				MESS => MESSEGE,
-				PUBLIC_KEY => PUBLIC_KEY, -- а сюда он просто не доходит
-				CODED_MESS => OUTPUT_MESSAGE);
-		end if
-	end process;
+
+	DECODER: RSA_DECODER port map(
+		MESS => INPUT_MESSAGE,
+		PRIVATE_KEY => PRIVATE_KEY,
+		DECODED_MESS => MESSEGE);
+
+	if (SEND_MESSAGE_FLAG == '1') then
+		CODER: RSA_CODER port map(
+			MESS => MESSEGE,
+			PUBLIC_KEY => PUBLIC_KEY,
+			CODED_MESS => OUTPUT_MESSAGE);
+	end if
 end RSA_DEVICE_ARCH;
