@@ -8,7 +8,7 @@ use IEEE.std_logic_1164.all;
 entity RSA_DEVICE is
 	port(
 		INPUT_MESSAGE:			in	std_logic_vector(7 downto 0);
-		SEND_MESSAGE_FLAG0:		in	std_logic;
+		SEND_MESSAGE_FLAG:		in	std_logic;
 		OUTPUT_MESSAGE:			out	std_logic_vector(7 downto 0));
 end RSA_DEVICE;
 
@@ -44,5 +44,5 @@ begin
 			MESS => MESSEGE,
 			PUBLIC_KEY => PUBLIC_KEY,
 			CODED_MESS => OUTPUT_MESSAGE);
-	end if
+	end if;
 end RSA_DEVICE_ARCH;
