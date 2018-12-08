@@ -1,3 +1,7 @@
+--------------------------|
+--TestBanch for RSA_DEVICE|
+--------------------------|
+
 library IEEE;
 use IEEE.std_logic_1164.all;   
 use IEEE.std_logic_unsigned.all;
@@ -11,18 +15,18 @@ architecture TB_ARCHITECTURE of rsa_device_tb is
 	-- Component declaration of the tested unit
 	component RSA_DEVICE
 	port(
-		INPUT_MESSAGE_DEV	  :in	std_logic_vector(7 downto 0);
-		SEND_MESSAGE_FLAG :in	std_logic;
-		OUTPUT_MESSAGE_DEV	  :out	std_logic_vector(7 downto 0)
+		INPUT_MESSAGE_DEV  :in	std_logic_vector(7 downto 0);
+		SEND_MESSAGE_FLAG  :in	std_logic;
+		OUTPUT_MESSAGE_DEV :out	std_logic_vector(7 downto 0)
 		);
 	end component;
 	
 	--Inputs
-	signal INPUT_MESSAGE_TB	 :std_logic_vector(7 downto 0):="00000000";
+	signal INPUT_MESSAGE_TB	 :std_logic_vector(7 downto 0) := "00010101";
 	signal SEND_MESSAGE_FLAG :std_logic:='0';
 	
 	--Output
-	signal OUTPUT_MESSAGE_TB :std_logic_vector(7 downto 0):="00000000";
+	signal OUTPUT_MESSAGE_TB :std_logic_vector(7 downto 0);
 	
 begin
 
@@ -38,7 +42,8 @@ begin
 	begin
 		for i in 0 to 7 loop
 			INPUT_MESSAGE_TB <= INPUT_MESSAGE_TB(0)&INPUT_MESSAGE_TB(7 downto 1);
-		end loop;
+		end loop; 
+		wait;
 	end process;
 	
 	flad_gen_proc: process is
