@@ -19,7 +19,9 @@ signal n : std_logic_vector(7 downto 0);
 begin
 	process is
 		begin
-			CODED_MESSAGE <= conv_std_logic_vector((conv_integer(MESSAGE_CD)**(conv_integer(e))rem (conv_integer(n))), 8);			
-			wait;
+			if (EN) then
+				CODED_MESSAGE <= conv_std_logic_vector((conv_integer(MESSAGE_CD)**(conv_integer(e))rem (conv_integer(n))), 8);			
+				wait; -- а зачем здесь wait?
+			end if;
 	end process;
 end RSA_CODER_ARCH;

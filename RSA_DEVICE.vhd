@@ -31,12 +31,12 @@ architecture RSA_DEVICE_ARCH of RSA_DEVICE is
 			);
 	end component;	
 	
-	signal PUBLIC_KEY_DEV  : std_logic_vector(15 downto 0):= "0000000000010001" ;
-	signal PRIVATE_KEY_DEV : std_logic_vector(15 downto 0):= "0000000000010101" ;
-	signal MESSEGE_DEV : std_logic_vector(7 downto 0);
+	signal PUBLIC_KEY_DEV  : std_logic_vector(15 downto 0):= "00000000"&"00010001" ;
+	signal PRIVATE_KEY_DEV : std_logic_vector(15 downto 0):= "00000000"&"00010101" ;
+	signal MESSEGE_DEV : std_logic_vector(7 downto 0) := "00000000";
 begin
 
-		DECODER: RSA_DECODER port map(
+	DECODER: RSA_DECODER port map(
 		MESSAGE_DC => INPUT_MESSAGE_DEV,
 		PRIVATE_KEY_DC => PRIVATE_KEY_DEV,
 		DECODED_MESSAGE => MESSEGE_DEV);
