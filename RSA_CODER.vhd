@@ -24,8 +24,15 @@ architecture RSA_CODER_ARCH of RSA_CODER is
 begin
 	process is
 		begin
+<<<<<<< HEAD
 			CODED_MESSAGE <= conv_std_logic_vector((conv_integer(MESSAGE_CD) ** (conv_integer(e)) rem (conv_integer(n))), 8);			
 			wait;
+=======
+			if (EN) then
+				CODED_MESSAGE <= conv_std_logic_vector((conv_integer(MESSAGE_CD)**(conv_integer(e))rem (conv_integer(n))), 8);			
+				wait; -- а зачем здесь wait?
+			end if;
+>>>>>>> origin/bugs
 	end process;
 	
 end RSA_CODER_ARCH;
