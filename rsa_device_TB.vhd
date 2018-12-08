@@ -1,42 +1,43 @@
-library ieee;
-use ieee.std_logic_1164.all;
+library IEEE;
+use IEEE.std_logic_1164.all;   
+use IEEE.std_logic_unsigned.all;
+use IEEE.std_logic_arith.all;
+	
 
-	-- Add your library and packages declaration here ...
-
-entity rsa_device_tb is
-end rsa_device_tb;
+entity RSA_DEVICE_TB is
+end RSA_DEVICE_TB;
 
 architecture TB_ARCHITECTURE of rsa_device_tb is
 	-- Component declaration of the tested unit
-	component rsa_device
+	component RSA_DEVICE
 	port(
-		INPUT_MESSAGE : in STD_LOGIC_VECTOR(7 downto 0);
-		SEND_MESSAGE_FLAG : in STD_LOGIC;
-		OUTPUT_MESSAGE : out STD_LOGIC_VECTOR(7 downto 0) );
+		INPUT_MESSAGE_DEV	  :in	std_logic_vector(7 downto 0);
+		SEND_MESSAGE_FLAG :in	std_logic;
+		OUTPUT_MESSAGE_DEV	  :out	std_logic_vector(7 downto 0)
+		);
 	end component;
-
-	-- Stimulus signals - signals mapped to the input and inout ports of tested entity
-	signal INPUT_MESSAGE : STD_LOGIC_VECTOR(7 downto 0);
-	signal SEND_MESSAGE_FLAG : STD_LOGIC;
-	-- Observed signals - signals mapped to the output ports of tested entity
-	signal OUTPUT_MESSAGE : STD_LOGIC_VECTOR(7 downto 0);
-
-	-- Add your code here ...
-
+	
+	--Inputs
+	signal INPUT_MESSAGE_TB	 :std_logic_vector(7 downto 0):="00000000";
+	signal SEND_MESSAGE_FLAG :std_logic:='0';
+	
+	--Output
+	signal OUTPUT_MESSAGE_TB :std_logic_vector(7 downto 0):="00000000";
+	
 begin
 
 	-- Unit Under Test port map
-	UUT : rsa_device
+	UUT : RSA_DEVICE
 		port map (
-			INPUT_MESSAGE => INPUT_MESSAGE,
+			INPUT_MESSAGE_DEV => INPUT_MESSAGE_TB,
 			SEND_MESSAGE_FLAG => SEND_MESSAGE_FLAG,
-			OUTPUT_MESSAGE => OUTPUT_MESSAGE
-		);
+			OUTPUT_MESSAGE_DEV => OUTPUT_MESSAGE_TB
+			);
 
 	input_mess_proc: process is
 	begin
 		for i in 0 to 7 loop
-			INPUT_MESSAGE <= INPUT_MESSAGE(0)&INPUT_MESSAGE(7 downto 1);
+			INPUT_MESSAGE_TB <= INPUT_MESSAGE_TB(0)&INPUT_MESSAGE_TB(7 downto 1);
 		end loop;
 	end process;
 	
@@ -50,11 +51,11 @@ begin
 
 end TB_ARCHITECTURE;
 
-configuration TESTBENCH_FOR_rsa_device of rsa_device_tb is
+configuration TESTBENCH_FOR_RSA_DEVICE of RSA_DEVICE_TB is
 	for TB_ARCHITECTURE
 		for UUT : rsa_device
 			use entity work.rsa_device(rsa_device_arch);
 		end for;
 	end for;
-end TESTBENCH_FOR_rsa_device;
+end TESTBENCH_FOR_RSA_DEVICE;
 
