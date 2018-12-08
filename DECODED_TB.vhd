@@ -18,11 +18,11 @@ architecture DECODER_TB_ARCH of DECODER_TB is
 	end component;
 	
 	--Inputs
-	signal MESSAGE	   :std_logic_vector:="00000000";
-	signal PRIVATE_KEY :std_logic_vector:="0000000000000000";
+	signal MESSAGE	   :std_logic_vector( 7 downto 0):="00000000";
+	signal PRIVATE_KEY :std_logic_vector(15 downto 0):="0000000000000000";
 	
 	--Output
-	signal DECODED_MESSAGE :std_logic_vector:="00000000";
+	signal DECODED_MESSAGE :std_logic_vector(7 downto 0):="00000000";
 	
 	-- Clock period definitions 
 	constant clk_period : time := 10ns; 

@@ -18,11 +18,11 @@ architecture DEVICE_TB_ARCH of DEVICE_TB is
 	end component;
 	
 	--Inputs
-	signal INPUT_MESSAGE	 :std_logic_vector:="00000000";
+	signal INPUT_MESSAGE	 :std_logic_vector(7 downto 0):="00000000";
 	signal SEND_MESSAGE_FLAG :std_logic:='0';
 	
 	--Output
-	signal OUTPUT_MESSAGE	 :std_logic_vector:="00000000";
+	signal OUTPUT_MESSAGE	 :std_logic_vector(7 downto 0):="00000000";
 	
 	-- Clock period definitions 
 	constant clk_period : time := 10ns; 
